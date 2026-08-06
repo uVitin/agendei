@@ -1,0 +1,16 @@
+{
+  "name": "@agendei/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "API REST do Agendei",
+  "scripts": {
+    "migrate": "dotenv -e ../../.env -- node-pg-migrate",
+    "migrate:up": "npm run migrate -- up",
+    "migrate:down": "npm run migrate -- down",
+    "migrate:create": "npm run migrate -- create"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
