@@ -47,4 +47,24 @@ agendei/
 
 ## Como rodar
 
-_Instruções serão adicionadas na Fase 2._
+Pré-requisitos: Docker e Docker Compose.
+
+```bash
+cp .env.example .env   # e preencha os valores
+docker compose up -d
+```
+
+O PostgreSQL sobe na porta `5433` do host (configurável em `POSTGRES_PORT`).
+
+Para conferir:
+
+```bash
+docker compose exec db psql -U agendei -d agendei -c "SELECT version();"
+```
+
+Para derrubar o ambiente:
+
+```bash
+docker compose down          # mantém os dados
+docker compose down -v       # apaga os dados também
+```
