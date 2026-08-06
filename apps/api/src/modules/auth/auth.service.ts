@@ -96,3 +96,20 @@ export async function login(input: LoginInput): Promise<AuthResult> {
     },
   };
 }
+
+export async function me(professionalId: string) {
+  const professional = await repository.findById(professionalId);
+
+  if (!professional) {
+    throw new AppError("Profissional não encontrado.", 404, "NOT_FOUND");
+  }
+
+  return {
+    id: professional.id,
+    name: professional.name,
+    email: professional.email,
+    slug: professional.slug,
+    timezone: professional.timezone,
+    createdAt: professional.created_at,
+  };
+}

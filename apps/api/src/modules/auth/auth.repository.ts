@@ -43,3 +43,11 @@ export async function create(data: {
   );
   return rows[0]!;
 }
+
+export async function findById(id: string): Promise<ProfessionalRow | null> {
+  const { rows } = await pool.query<ProfessionalRow>(
+    "SELECT * FROM professionals WHERE id = $1",
+    [id],
+  );
+  return rows[0] ?? null;
+}
