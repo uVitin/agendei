@@ -30,3 +30,19 @@ export async function availability(
     next(error);
   }
 }
+
+export async function createAppointment(
+  request: Request,
+  response: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const result = await service.createAppointment(
+      request.params.slug!,
+      request.body,
+    );
+    response.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+}

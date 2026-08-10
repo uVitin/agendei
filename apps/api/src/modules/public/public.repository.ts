@@ -90,3 +90,37 @@ export async function listBusyIntervals(
   );
   return rows;
 }
+
+export interface AppointmentRow {
+  id: string;
+  starts_at: Date;
+  ends_at: Date;
+  status: string;
+}
+
+export async function createAppointment(data: {
+  professionalId: string;
+  serviceId: string;
+  clientName: string;
+  clientEmail: string | null;
+  clientPhone: string | null;
+  startsAt: Date;
+  endsAt: Date;
+}): Promise<AppointmentRow> {
+  const { rows } = await pool.query<AppointmentRow>(
+    `INSERT INTO appointments
+       (professional_id, service_id, client_name, client_email, client_phone, starts_at, ends_at)
+     VALUES ($1, $2, $3, $4, $5, $6, $7)
+     RETURNING id, starts_at, ends_at, status`,
+    [
+      data.professionalId,
+      data.serviceId,
+      data.clientName,
+      data.clientEmail,
+      data.clientPhone,
+      data.startsAt,
+      data.endsAt,
+    ],
+  );
+  return rows[0]!;
+}
