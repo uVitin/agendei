@@ -1,4 +1,7 @@
 import express from "express";
+import cors from "cors";
+import { env } from "./config/env.js";
+
 import { checkDatabaseConnection } from "./database/pool.js";
 import { authRoutes } from "./modules/auth/auth.routes.js";
 import { errorHandler } from "./shared/middlewares/errorHandler.js";
@@ -10,6 +13,7 @@ import { appointmentsRoutes } from "./modules/appointments/appointments.routes.j
 export const app = express();
 
 app.use(express.json());
+app.use(cors({ origin: env.CORS_ORIGIN.split(",").map((o) => o.trim()) }));
 
 app.get("/health", async (_request, response) => {
   const databaseOk = await checkDatabaseConnection();
