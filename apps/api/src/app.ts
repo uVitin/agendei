@@ -5,6 +5,7 @@ import { errorHandler } from "./shared/middlewares/errorHandler.js";
 import { servicesRoutes } from "./modules/services/services.routes.js";
 import { workingHoursRoutes } from "./modules/working-hours/working-hours.routes.js";
 import { publicRoutes } from "./modules/public/public.routes.js";
+import { appointmentsRoutes } from "./modules/appointments/appointments.routes.js";
 
 export const app = express();
 
@@ -25,6 +26,7 @@ app.use("/auth", authRoutes);
 app.use("/services", servicesRoutes);
 app.use("/working-hours", workingHoursRoutes);
 app.use("/public", publicRoutes);
+app.use("/appointments", appointmentsRoutes);
 
 // Rota não encontrada
 app.use((_request, response) => {
