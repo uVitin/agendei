@@ -4,6 +4,7 @@ import { authRoutes } from "./modules/auth/auth.routes.js";
 import { errorHandler } from "./shared/middlewares/errorHandler.js";
 import { servicesRoutes } from "./modules/services/services.routes.js";
 import { workingHoursRoutes } from "./modules/working-hours/working-hours.routes.js";
+import { publicRoutes } from "./modules/public/public.routes.js";
 
 export const app = express();
 
@@ -23,6 +24,7 @@ app.get("/health", async (_request, response) => {
 app.use("/auth", authRoutes);
 app.use("/services", servicesRoutes);
 app.use("/working-hours", workingHoursRoutes);
+app.use("/public", publicRoutes);
 
 // Rota não encontrada
 app.use((_request, response) => {
