@@ -33,7 +33,7 @@ export async function update(
 ): Promise<void> {
   try {
     const result = await service.update(
-      request.params.id!,
+      String(request.params.id),
       request.professionalId!,
       request.body,
     );
@@ -50,7 +50,7 @@ export async function deactivate(
 ): Promise<void> {
   try {
     const result = await service.deactivate(
-      request.params.id!,
+      String(request.params.id),
       request.professionalId!,
     );
     response.status(200).json(result);

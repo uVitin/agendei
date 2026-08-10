@@ -7,7 +7,7 @@ export async function profile(
   next: NextFunction,
 ): Promise<void> {
   try {
-    const result = await service.getProfile(request.params.slug!);
+    const result = await service.getProfile(String(request.params.slug));
     response.status(200).json(result);
   } catch (error) {
     next(error);
@@ -21,7 +21,7 @@ export async function availability(
 ): Promise<void> {
   try {
     const result = await service.getAvailability(
-      request.params.slug!,
+      String(request.params.slug),
       String(request.query.serviceId),
       String(request.query.date),
     );
@@ -38,7 +38,7 @@ export async function createAppointment(
 ): Promise<void> {
   try {
     const result = await service.createAppointment(
-      request.params.slug!,
+      String(request.params.slug),
       request.body,
     );
     response.status(201).json(result);

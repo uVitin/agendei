@@ -25,7 +25,7 @@ export async function cancel(
 ): Promise<void> {
   try {
     const result = await service.cancel(
-      request.params.id!,
+      String(request.params.id),
       request.professionalId!,
     );
     response.status(200).json(result);
