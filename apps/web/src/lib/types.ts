@@ -47,3 +47,10 @@ export interface AuthResponse {
   token: string;
   professional: AuthenticatedProfessional;
 }
+
+export interface WorkingHour {
+  id: string;
+  weekday: number;
+  startTime: string;
+  endTime: string;
+}
