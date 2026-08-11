@@ -35,3 +35,15 @@ export interface AppointmentConfirmation {
   service: Service;
   client: { name: string; email: string | null; phone: string | null };
 }
+
+export interface AuthenticatedProfessional {
+  id: string;
+  name: string;
+  email: string;
+  slug: string;
+}
+
+export interface AuthResponse {
+  token: string;
+  professional: AuthenticatedProfessional;
+}
